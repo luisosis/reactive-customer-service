@@ -1,4 +1,4 @@
-package com.reactive.customer.service.infrastructure.persistence.entity;
+package com.reactive.customer.service.customer.infrastructure.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

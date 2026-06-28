@@ -1,4 +1,4 @@
-package com.reactive.customer.service.infrastructure.config;
+package com.reactive.customer.service.customer.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

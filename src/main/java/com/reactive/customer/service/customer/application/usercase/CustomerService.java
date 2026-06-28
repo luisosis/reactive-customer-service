@@ -1,11 +1,12 @@
-package com.reactive.customer.service.application.service;
+package com.reactive.customer.service.customer.application.usercase;
 
 import com.github.benmanes.caffeine.cache.Cache;
-import com.reactive.customer.service.application.usercase.GetCustomerUseCase;
-import com.reactive.customer.service.domain.model.Customer;
-import com.reactive.customer.service.domain.CustomerRepository;
-import com.reactive.customer.service.domain.model.UserResponse;
-import com.reactive.customer.service.infrastructure.client.UserApiClient;
+import com.reactive.customer.service.customer.application.port.out.CustomerPersistencePort;
+import com.reactive.customer.service.customer.application.port.in.GetCustomerUseCase;
+import com.reactive.customer.service.customer.domain.model.Customer;
+import com.reactive.customer.service.customer.infrastructure.persistence.repository.CustomerRepository;
+import com.reactive.customer.service.customer.domain.model.UserResponse;
+import com.reactive.customer.service.customer.infrastructure.client.UserApiClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -19,6 +20,8 @@ public class CustomerService implements GetCustomerUseCase {
     private final CustomerRepository customerRepository;
     private final Cache<Long, Customer> customerCache;
     private final UserApiClient userApiClient;
+
+    private final CustomerPersistencePort customerPersistencePort;
 
     @Override
     public Flux<Customer> findAll() {
@@ -46,7 +49,14 @@ public class CustomerService implements GetCustomerUseCase {
     }
 
     @Override
+    public Mono<Customer> findByIdClean(Long id) {
+        return customerPersistencePort.findById(id);
+    }
+
+    @Override
     public Flux<UserResponse>callThird() {
         return userApiClient.getUsers();
     }
+
+
 }

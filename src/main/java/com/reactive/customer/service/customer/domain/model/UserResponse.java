@@ -1,4 +1,4 @@
-package com.reactive.customer.service.domain.model;
+package com.reactive.customer.service.customer.domain.model;
 
 public record UserResponse(
         Integer id,

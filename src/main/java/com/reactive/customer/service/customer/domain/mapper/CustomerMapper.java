@@ -1,7 +1,7 @@
-package com.reactive.customer.service.domain.mapper;
+package com.reactive.customer.service.customer.domain.mapper;
 
-import com.reactive.customer.service.domain.model.Customer;
-import com.reactive.customer.service.infrastructure.persistence.entity.CustomerEntity;
+import com.reactive.customer.service.customer.domain.model.Customer;
+import com.reactive.customer.service.customer.infrastructure.persistence.entity.CustomerEntity;
 
 public class CustomerMapper {
 

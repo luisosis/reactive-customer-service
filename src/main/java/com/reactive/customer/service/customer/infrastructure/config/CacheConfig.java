@@ -1,8 +1,8 @@
-package com.reactive.customer.service.infrastructure.config;
+package com.reactive.customer.service.customer.infrastructure.config;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.reactive.customer.service.domain.model.Customer;
+import com.reactive.customer.service.customer.domain.model.Customer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

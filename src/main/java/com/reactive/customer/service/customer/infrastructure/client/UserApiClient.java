@@ -1,6 +1,6 @@
-package com.reactive.customer.service.infrastructure.client;
+package com.reactive.customer.service.customer.infrastructure.client;
 
-import com.reactive.customer.service.domain.model.UserResponse;
+import com.reactive.customer.service.customer.domain.model.UserResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;

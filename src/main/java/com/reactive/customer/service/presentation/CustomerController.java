@@ -2,6 +2,7 @@ package com.reactive.customer.service.presentation;
 
 import com.reactive.customer.service.application.usercase.GetCustomerUseCase;
 import com.reactive.customer.service.domain.model.Customer;
+import com.reactive.customer.service.domain.model.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,5 +26,10 @@ public class CustomerController {
     @GetMapping(value = "/{id}")
     public Mono<Customer> findById(@PathVariable Long id){
         return useCase.findById(id);
+    }
+
+    @GetMapping(value = "/third")
+    public Flux<UserResponse> callThird(){
+        return useCase.callThird();
     }
 }

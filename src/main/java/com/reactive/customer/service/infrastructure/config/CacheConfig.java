@@ -1,4 +1,4 @@
-package com.reactive.customer.service.config;
+package com.reactive.customer.service.infrastructure.config;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;

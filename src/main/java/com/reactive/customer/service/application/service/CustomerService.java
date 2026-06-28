@@ -4,6 +4,8 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.reactive.customer.service.application.usercase.GetCustomerUseCase;
 import com.reactive.customer.service.domain.model.Customer;
 import com.reactive.customer.service.domain.CustomerRepository;
+import com.reactive.customer.service.domain.model.UserResponse;
+import com.reactive.customer.service.infrastructure.client.UserApiClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -16,6 +18,7 @@ public class CustomerService implements GetCustomerUseCase {
 
     private final CustomerRepository customerRepository;
     private final Cache<Long, Customer> customerCache;
+    private final UserApiClient userApiClient;
 
     @Override
     public Flux<Customer> findAll() {
@@ -40,5 +43,10 @@ public class CustomerService implements GetCustomerUseCase {
 
         //put: para actualizar
         //invalidate: para eliminar
+    }
+
+    @Override
+    public Flux<UserResponse>callThird() {
+        return userApiClient.getUsers();
     }
 }

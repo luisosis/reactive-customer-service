@@ -5,10 +5,7 @@ import com.reactive.customer.service.customer.application.port.in.GetExternalCus
 import com.reactive.customer.service.customer.domain.model.Customer;
 import com.reactive.customer.service.customer.domain.model.UserResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -28,6 +25,11 @@ public class CustomerController {
     @GetMapping(value = "/{id}")
     public Mono<Customer> findById(@PathVariable Long id) {
         return useCase.findById(id);
+    }
+
+    @PostMapping(value = "/customer")
+    public Mono<Customer> saveCustomer(@RequestBody Customer customer) {
+        return useCase.saveCustomer(customer);
     }
 
     @GetMapping(value = "/third")

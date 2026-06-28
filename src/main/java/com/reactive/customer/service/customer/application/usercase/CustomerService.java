@@ -4,6 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.reactive.customer.service.customer.application.port.out.CustomerPersistencePort;
 import com.reactive.customer.service.customer.application.port.in.GetCustomerUseCase;
 import com.reactive.customer.service.customer.domain.model.Customer;
+import com.reactive.customer.service.customer.infrastructure.persistence.mapper.UserMapper;
 import com.reactive.customer.service.customer.infrastructure.persistence.repository.CustomerRepository;
 import com.reactive.customer.service.customer.domain.model.UserResponse;
 import com.reactive.customer.service.customer.infrastructure.client.UserApiClient;
@@ -20,6 +21,8 @@ public class CustomerService implements GetCustomerUseCase {
     private final CustomerRepository customerRepository;
     private final Cache<Long, Customer> customerCache;
     private final UserApiClient userApiClient;
+
+    private final UserMapper userMapper;
 
     private final CustomerPersistencePort customerPersistencePort;
 
@@ -46,6 +49,12 @@ public class CustomerService implements GetCustomerUseCase {
 
         //put: para actualizar
         //invalidate: para eliminar
+    }
+
+    @Override
+    public Mono<Customer> saveCustomer(Customer customer) {
+        return Mono.fromCallable(() -> customerRepository.save(userMapper.toEntity(customer)))
+                .map(userMapper::toDto);
     }
 
     @Override

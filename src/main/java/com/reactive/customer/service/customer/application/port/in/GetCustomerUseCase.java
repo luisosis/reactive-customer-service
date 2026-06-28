@@ -8,6 +8,8 @@ import reactor.core.publisher.Mono;
 public interface GetCustomerUseCase {
     Flux<Customer> findAll();
     Mono<Customer> findById(Long id);
+
+    Mono<Customer> saveCustomer(Customer customer);
     Mono<Customer> findByIdClean(Long id);
 
     Flux<UserResponse> callThird();

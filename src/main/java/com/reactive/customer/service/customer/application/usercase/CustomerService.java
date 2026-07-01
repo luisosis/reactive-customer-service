@@ -29,6 +29,7 @@ public class CustomerService implements GetCustomerUseCase {
     @Override
     public Flux<Customer> findAll() {
         return Flux.fromIterable(customerRepository.findAll())
+                .subscribeOn(Schedulers.boundedElastic())
                 .map(entity ->
                         new Customer(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getEmail(),entity.getPhone(),entity.getStatus()));
     }

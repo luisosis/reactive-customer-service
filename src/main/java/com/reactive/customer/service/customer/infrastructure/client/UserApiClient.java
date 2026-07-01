@@ -1,6 +1,7 @@
 package com.reactive.customer.service.customer.infrastructure.client;
 
 import com.reactive.customer.service.customer.domain.model.UserResponse;
+import com.reactive.customer.service.customer.infrastructure.exception.ExchangeApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,6 +22,7 @@ public class UserApiClient {
                 .retrieve()
                 .bodyToFlux(UserResponse.class)
                 .doOnNext(userResponse -> log.info("usuario: {}", userResponse.name()))
-                .doOnError(throwable -> log.error("Error consumiendo API", throwable));
+                .doOnError(throwable -> log.error("Error consumiendo API", throwable))
+                .onErrorMap(throwable -> new ExchangeApiException("error", throwable));
     }
 }

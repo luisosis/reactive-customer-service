@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableCaching
@@ -18,8 +18,8 @@ public class CacheConfig {
 public Cache<Long, Customer> customerCache() {
 
     return Caffeine.newBuilder()
-            .maximumSize(1000)
-            .expireAfterWrite(Duration.ofSeconds(30))
+            .maximumSize(100)
+            .expireAfterWrite(10, TimeUnit.SECONDS)
             .build();
 }
 

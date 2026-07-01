@@ -37,6 +37,8 @@ public class CustomerService implements GetCustomerUseCase {
     public Mono<Customer> findById(Long id) {
         Customer cached = customerCache.getIfPresent(id);
 
+        Customer cached2 = customerCache.getIfPresent(id);
+
         if (cached != null) {
             return Mono.just(cached);
         }
